@@ -1,0 +1,70 @@
+<html>
+<title>Mayon's Ice Cream Eater</title>
+<h3 style="display: block;margin: auto;width: 290px;">Mayon's Ice Cream Eater</h3>
+<p></p>
+    <button style="display: block;margin: auto;width: 100px;height: 200px">
+<div id="partone" style="background-color: pink; height: 25px; width: 50px; margin: 0 auto;"></div>
+<div id="parttwo" style="background-color: blue; height: 25px; width: 50px; margin: 0 auto;"></div>
+<div id="partthree" style="background-color: orange; height: 25px; width: 50px; margin: 0 auto;"></div>
+<div id="stick" style="background-color: gold; height: 50px; width: 15px; margin: 0 auto;"></div>
+</button>
+<p></p>
+<button id="button1" onclick="eatpartone()" style="margin: auto; display: block; width: 200px; font-size: 50px; border-color: blue; background-color: white;">Eat</button>
+<button id="button2" style="border: none; background-color: white;"></button>
+<button id="button3" style="border: none; background-color: white;"></button>
+<button id="display" style="border: none; background-color: white;"></button>
+<p></p>
+<button id="restart" style="border: none; background-color: white;"></button>
+
+<script>
+function eatpartone() {
+    var button2 = document.getElementById('button2');
+    button2.innerText = 'Eat';
+    button2.onclick = eatparttwo;
+    button2.style = 'margin: auto; display: block; background-color: white; width: 200px; font-size: 50px; border-color: blue;';
+
+    var delPartOne = document.getElementById('partone');
+    var delButton1 = document.getElementById('button1');
+    console.log('Eaten `partone`.');
+    delPartOne.remove();
+    delButton1.remove();
+}
+
+function eatparttwo() {
+    var button3 = document.getElementById('button3');
+    button3.innerText = 'Eat';
+    /* button3.style.margin = 'auto';
+    button3.style.display = 'block';
+    button3.style.backgroundColor = 'white';
+    button3.style.width = '200px';
+    button3.style.fontSize = '50px'; */
+   button3.style = 'margin: auto; display: block; background-color: white; width: 200px; font-size: 50px; border-color: blue;';
+    button3.onclick = eatpartthree;
+
+    var delPartTwo = document.getElementById('parttwo');
+    var delButton2 = document.getElementById('button2');
+    delPartTwo.remove();
+    delButton2.remove();
+    console.log('Eaten `parttwo`.');
+}
+
+function eatpartthree() {
+    document.getElementById('partthree').remove();
+    document.getElementById('button3').remove();
+    document.getElementById('display').style = 'margin: auto; display: block; background-color: white; width: 500px; font-size: 50px; border-color: green;';
+    document.getElementById('display').innerText = 'Ice cream has been eaten, yum!';
+    document.getElementById('restart').innerText = 'Play Again';
+    document.getElementById('restart').style = 'margin: auto; display: block; background-color: white; width: 175px; font-size: 25px; border-color: yellow;';
+    document.getElementById('restart').onclick = restartgame;
+}
+function restartgame() {
+if (confirm('Are you sure you would like to restart?')) {
+location.reload();
+}
+else {
+console.log('Declined Refresh.')
+}
+}
+</script>
+<h2 style="margin: auto;display: block;width: 50px;"><a href="mainpage.html">Home</a></h2>
+</html>
