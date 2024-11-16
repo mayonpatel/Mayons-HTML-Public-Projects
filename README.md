@@ -5,4 +5,4 @@
 ### IMPORTANT: To use mainpage.html, you must have every other file or it wont work. Also please have it as the exact file name and don't split it into different folders.
 
 
-Do not claim my files as your own.
+Do not claim my files as your own, or upload it elsewhere without credit and link to this github (https://github.com/mayonpatel/Mayons-HTML-Public-Projects).
