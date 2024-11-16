@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayon's Random Number Receiver</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mayon's Random Number Receiver</h2>
+  <button id="display" style="width: 150px;">Display</button>
+  
+  <button onclick="resetDisplay()">New Limit</button>
+  <p></p>
+  <button style="font-size: 21px; background-color: gold; width: 200px; height: 50px;" onclick="getRandomNumber()">Get A Random Number</button>
+
+  <script>
+    userChoice = prompt('What would you like the limit to be? (0-any)')
+    function returnNumber() {
+      return Math.floor(Math.random() * userChoice);
+    }
+
+    function getRandomNumber() {
+    console.log('Number has been displayed.')
+      document.getElementById('display').innerText = `${returnNumber()}`;
+    }
+    
+    function resetDisplay() {
+    if (confirm('Are you sure you would like to choose another number?')) {
+    location.reload();
+      }
+    }
+      
+    
+  </script>
+      <h3><a href="mainpage.html">Home</a></h3>
+</body>
+</html>
