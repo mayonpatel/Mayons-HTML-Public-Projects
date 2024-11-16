@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayon's Text Reverser</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    input, button {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Mayon's Text Reverser</h3>
+  <input type="text" id="number">
+  <button onclick="submit()">Reverse</button>
+  <button onclick="resetDisplay()">Reset Display</button>
+  <p></p>
+  <button style="width: 200px; height: 45px; font-size: 25px;" id="display">Display</button>
+  <p></p>
+
+  <script>
+    function resetDisplay() {
+      if (confirm('Are you sure you would like to reset the display?')) {
+        location.reload();
+      }
+    }
+
+    function submit() {
+      var num = document.getElementById('number').value;
+      var revnum = num.toString().split('').reverse().join('');
+      document.getElementById('display').innerText = revnum;
+    }
+  </script>
+    <p></p>
+      <h3><a href="mainpage.html">Home</a></h3>
+</body>
+</html>
