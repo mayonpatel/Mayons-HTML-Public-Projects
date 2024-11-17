@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayon's Odd & Even Receiver</title>
+</head>
+<body>
+  <h2>Mayon's Odd & Even Receiver</h2>
+  <p></p>
+  <input id="textbox" type="number">
+  <button style="width: 100px;" onclick="getValueEven()">Get all Even Numbers</button>
+  <button style="width: 100px;" onclick="getValueOdd()">Get all Odd Numbers</button>
+  <button style="width: 100px;" onclick="resetNumbers()">Clear</button>
+  <h3><a href="mainpage.html">Home</a></h3>
+  <button id="displaybtn"></button>
+  <p></p>
+
+  <script>
+    function getValueEven() {
+      var num = document.getElementById('textbox').value;
+      var evenNumbers = "";
+      for (var i = 0; i <= num; i++) {
+        if (i % 2 === 0) {
+          evenNumbers += i + "<br/>";
+        }
+      }
+      document.getElementById('displaybtn').innerHTML = evenNumbers;
+    }
+
+    function getValueOdd() {
+      var num = document.getElementById('textbox').value;
+      var oddNumbers = "";
+      for (var i = 0; i <= num; i++) {
+        if (i % 2 !== 0) {
+          oddNumbers += i + "<br/>";
+        }
+      }
+      document.getElementById('displaybtn').innerHTML = oddNumbers;
+    }
+
+    function resetNumbers() {
+      if (confirm('Are you sure you would like to clear?')) {
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>
