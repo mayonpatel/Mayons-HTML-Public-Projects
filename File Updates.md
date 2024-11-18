@@ -4,4 +4,5 @@ File updates will show here.
 ## Mayons Chat App
 
 I have fixed blank usernames and usernames over twenty characters. Enjoy the rest of your day!
+(will update in full pack as it's considered a large big fix.)
 ----------------------------------
