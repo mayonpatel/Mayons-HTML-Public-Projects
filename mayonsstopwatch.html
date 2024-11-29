@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html style="background: green">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayons Stopwatch</title>
+    <style>
+        #stopwatch {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: gray;
+            width: 125px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .buttons {
+            text-align: center;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center; margin: auto;">Mayon's Stopwatch</h2>
+    <p></p>
+    <h2 style="text-align: center; margin: auto;"><a href="mainpage.html">Home</a></h2>
+    <p></p>
+    <div style="background-color: gray;length: 200px;width:117px;margin: auto">
+        <div id="stopwatch">00:00:00</div>
+    </div>
+    <div class="buttons">
+        <button style="background-color: lightgreen; width: 150px; length: 50px; font-size: 50px" onclick="startStopwatch()">Start</button>
+        <button style="background-color: lightblue; width: 150px; length: 50px; font-size: 50px" onclick="pauseStopwatch()">Pause</button>
+        <button style="background-color: red; width: 150px; length: 50px; font-size: 50px" onclick="resetStopwatch()">Reset</button>
+    </div>
+    <script>
+        let stopwatchInterval;
+        let startTime = 0;
+        let elapsedTime = 0;
+        let paused = true;
+
+        function startStopwatch() {
+            if (paused) {
+                paused = false;
+                startTime = Date.now() - elapsedTime;
+                stopwatchInterval = setInterval(updateStopwatch, 100);
+            }
+        }
+
+        function pauseStopwatch() {
+            if (!paused) {
+                paused = true;
+                clearInterval(stopwatchInterval);
+                elapsedTime = Date.now() - startTime;
+            }
+        }
+
+        function resetStopwatch() {
+        if(confirm('Are you sure you would like to reset the stopwatch?')) {
+            paused = true;
+            clearInterval(stopwatchInterval);
+            elapsedTime = 0;
+            document.getElementById('stopwatch').textContent = '00:00:00';
+            }
+        }
+
+        function updateStopwatch() {
+            elapsedTime = Date.now() - startTime;
+            let totalSeconds = Math.floor(elapsedTime / 1000);
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+
+            document.getElementById('stopwatch').textContent =
+                (hours < 10 ? '0' : '') + hours + ':' +
+                (minutes < 10 ? '0' : '') + minutes + ':' +
+                (seconds < 10 ? '0' : '') + seconds;
+        }
+    </script>
+</body>
+</html>
