@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mayons Stopwatch</title>
+    <title>Mayon's Stopwatch</title>
     <style>
         #stopwatch {
             font-size: 2em;
@@ -22,21 +22,24 @@
         }
         button {
             margin: 5px;
+            font-size: 1.5em; /* Slightly larger font size for the button text */
+        }
+        h2, h3 {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h2 style="text-align: center; margin: auto;">Mayon's Stopwatch</h2>
+    <h2>Mayon's Stopwatch</h2>
+    <h3><a href="mainpage.html">Home</a></h3>
     <p></p>
-    <h2 style="text-align: center; margin: auto;"><a href="mainpage.html">Home</a></h2>
-    <p></p>
-    <div style="background-color: gray;length: 200px;width:117px;margin: auto">
+    <div style="background-color: gray; length: 150px; width: 117px; margin: auto">
         <div id="stopwatch">00:00:00</div>
     </div>
     <div class="buttons">
-        <button style="background-color: lightgreen; width: 150px; length: 50px; font-size: 50px" onclick="startStopwatch()">Start</button>
-        <button style="background-color: lightblue; width: 150px; length: 50px; font-size: 50px" onclick="pauseStopwatch()">Pause</button>
-        <button style="background-color: red; width: 150px; length: 50px; font-size: 50px" onclick="resetStopwatch()">Reset</button>
+        <button style="background-color: lightgreen; width: 150px; height: 50px; font-size: 1.5em" onclick="startStopwatch()" id="Startbtn">Start</button>
+        <button style="background-color: lightblue; width: 150px; height: 50px; font-size: 1.5em" onclick="pauseStopwatch()">Pause</button>
+        <button style="background-color: red; width: 150px; height: 50px; font-size: 1.5em" onclick="resetStopwatch()">Reset</button>
     </div>
     <script>
         let stopwatchInterval;
@@ -45,6 +48,9 @@
         let paused = true;
 
         function startStopwatch() {
+            document.getElementById('Startbtn').innerText = 'Start';
+            document.getElementById('Startbtn').style.fontSize = '1.5em';
+            document.getElementById('Startbtn').style = 'background-color: lightgreen; width: 150px; height: 50px; font-size: 1.5em';
             if (paused) {
                 paused = false;
                 startTime = Date.now() - elapsedTime;
@@ -53,6 +59,9 @@
         }
 
         function pauseStopwatch() {
+            document.getElementById('Startbtn').innerText = 'Resume';
+            document.getElementById('Startbtn').style.fontSize = '1.5em';
+            document.getElementById('Startbtn').style = 'background-color: white; width: 150px; height: 50px; font-size: 1.5em';
             if (!paused) {
                 paused = true;
                 clearInterval(stopwatchInterval);
@@ -61,11 +70,13 @@
         }
 
         function resetStopwatch() {
-        if(confirm('Are you sure you would like to reset the stopwatch?')) {
-            paused = true;
-            clearInterval(stopwatchInterval);
-            elapsedTime = 0;
-            document.getElementById('stopwatch').textContent = '00:00:00';
+            if (confirm('Are you sure you would like to reset the stopwatch?')) {
+            document.getElementById('Startbtn').innerText = 'Start';
+            document.getElementById('Startbtn').style = 'background-color: lightgreen; width: 150px; height: 50px; font-size: 1.5em';
+                paused = true;
+                clearInterval(stopwatchInterval);
+                elapsedTime = 0;
+                document.getElementById('stopwatch').textContent = '00:00:00';
             }
         }
 
