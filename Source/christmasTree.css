@@ -1,19 +1,22 @@
-    .container {
-            position: relative;
-            display: inline-block;
-        }
-        .light1 {
-            position: absolute;
-            top: 565px; 
-            left: 122px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-        }
-        .light2 {
-            position: absolute;
-            top: 565px; 
-            left: 122px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.light1 {
+    position: absolute;
+    top: 565px;
+    left: 122px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+}
+
+.light2 {
+    position: absolute;
+    top: 565px;
+    left: 122px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+}
