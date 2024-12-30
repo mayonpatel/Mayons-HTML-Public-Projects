@@ -13,7 +13,7 @@
     height: 100%; /* Ensure image fits inside container */
 }
 
-.light1, .light2 {
+.light {
     position: absolute;
     width: 50px;  /* Set a width for the light */
     height: 50px; /* Set a height for the light */
@@ -21,14 +21,8 @@
     padding: 10px;
 }
 
-.light1 {
+.light {
     top: 100px;
     left: 50px;
     background: rgba(255, 0, 0, 0.5); /* Example: red color */
-}
-
-.light2 {
-    top: 200px;
-    left: 150px;
-    background: rgba(0, 255, 0, 0.5); /* Example: green color */
 }
