@@ -18,7 +18,7 @@
     height: 50px; /* Set a height for the light */
     color: white;
     padding: 10px;
-    background: red;  /* Set the original color to red */
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .light1 {
