@@ -1,22 +1,25 @@
+/* Ensure the container has defined size to hold the lights */
 .container {
     position: relative;
     display: inline-block;
+    width: 300px;  /* Set the width to match your image */
+    height: 400px; /* Set the height to match your image */
 }
 
 .light1 {
     position: absolute;
-    top: 565px;
-    left: 122px;
-    background: rgba(0, 0, 0, 0.5);
+    top: 100px; /* Adjust top to position the light correctly */
+    left: 50px; /* Adjust left to position the light correctly */
+    background: rgba(255, 0, 0, 0.5); /* Example: red color */
     color: white;
     padding: 10px;
 }
 
 .light2 {
     position: absolute;
-    top: 565px;
-    left: 122px;
-    background: rgba(0, 0, 0, 0.5);
+    top: 200px; /* Adjust top to position the second light */
+    left: 150px; /* Adjust left to position the second light */
+    background: rgba(0, 255, 0, 0.5); /* Example: green color */
     color: white;
     padding: 10px;
 }
