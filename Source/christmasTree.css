@@ -1,5 +1,4 @@
 /* Ensure the container has defined size to hold the lights */
-
 .container {
     position: relative;
     display: inline-block;
@@ -12,16 +11,17 @@
     height: 100%; /* Ensure image fits inside container */
 }
 
+/* Light styles */
 .light1 {
     position: absolute;
     width: 50px;  /* Set a width for the light */
     height: 50px; /* Set a height for the light */
     color: white;
     padding: 10px;
+    background: red;  /* Set the original color to red */
 }
 
 .light1 {
     top: 100px;
     left: 50px;
-    background: rgba(0, 0, 0, 0.5);
 }
