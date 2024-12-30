@@ -74,7 +74,8 @@
   position: absolute;
   top: 75px;
   left: 315px;
-  width: 175px;
+  font-size: 50px;
+  width: 161px;
 }
 
 .label {
