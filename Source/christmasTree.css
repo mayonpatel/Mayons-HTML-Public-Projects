@@ -1,5 +1,9 @@
 /* Ensure the container has defined size to hold the lights */
-
+.l33 {
+    background-color: green; /* experimenting with .l33 */
+    padding: 10px;
+    color: white;
+}
 
 .container {
     position: relative;
@@ -13,7 +17,7 @@
     height: 100%; /* Ensure image fits inside container */
 }
 
-.light {
+.light1{
     position: absolute;
     width: 50px;  /* Set a width for the light */
     height: 50px; /* Set a height for the light */
@@ -21,7 +25,7 @@
     padding: 10px;
 }
 
-.light {
+.light1 {
     top: 100px;
     left: 50px;
     background: rgba(255, 0, 0, 0.5); /* Example: red color */
