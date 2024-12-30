@@ -1,4 +1,7 @@
 /* Ensure the container has defined size to hold the lights */
+.l33 {
+    background-color: green;
+}
 .container {
     position: relative;
     display: inline-block;
