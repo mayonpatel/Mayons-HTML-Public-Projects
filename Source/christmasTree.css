@@ -12,7 +12,7 @@
     height: 100%; /* Ensure image fits inside container */
 }
 
-.light1, .light2 {
+.light1 {
     position: absolute;
     width: 50px;  /* Set a width for the light */
     height: 50px; /* Set a height for the light */
