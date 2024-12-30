@@ -1,9 +1,5 @@
 /* Ensure the container has defined size to hold the lights */
-.l33 {
-    background-color: green; /* experimenting with .l33 */
-    padding: 10px;
-    color: white;
-}
+
 
 .container {
     position: relative;
