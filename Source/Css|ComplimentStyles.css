@@ -1,0 +1,75 @@
+    html, body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://th.bing.com/th/id/R.f54f18d602e0cd36ffa327106aee2706?rik=pNJdr2DIi0s0Dw&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f4%2ff%2f6%2f1198098-toronto-skyline-wallpaper-2880x1800-for-ipad-2.jpg&ehk=oYNfZA4BkYSGU5%2fAyrr1xyz0Bj%2fgNEUmzdQrglCs5AM%3d&risl=&pid=ImgRaw&r=0");
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+.aTag {
+  display: grid;
+  color: white;
+  font-family: Poppins;
+  padding: 10px 20px;
+  text-align: center;
+  position: absolute;
+  margin-top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  place-items: center;
+  width: 50px;
+  margin: 0 auto;
+}
+    
+.title {
+  display: grid;
+  color: white;
+  font-family: Poppins;
+  padding: 10px 20px;
+  text-align: center;
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  place-items: center;
+}
+
+
+#displayBack {
+  display: grid;
+  font-size: 20px;
+  font-family: Poppins;
+  background-color: #3E4C4B;
+  width: 425px;
+  height: 125px;
+  border-radius: 15%;
+  margin: 0 auto;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 85px;
+  place-items: center;
+  cursor: none;
+  border: 2px solid black;
+}
+.getComp {
+    display: grid;
+    font-family: Poppins;
+    font-size: 21px;
+    border-radius: 25%;
+    border: 2px solid black;
+    cursor: pointer;
+    background-color: #3D463C;
+    color: white;
+    width: 225px;
+    height: 75px;
+    padding: 10px 20px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 85px;
+}
+
+.getComp:active {
+    border: 4px solid black;
+    background-color: #313A30;
+}
