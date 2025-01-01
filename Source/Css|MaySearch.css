@@ -1,4 +1,4 @@
-        html, body {
+                html, body {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -27,7 +27,7 @@
         #Searchbar {
             width: 500px;
             height: 90px;
-            margin-top: 20px;
+            margin-top: 5px;
             font-size: 30px;
             padding: 5px;
             border: 7px solid black;
@@ -85,6 +85,13 @@
             font-size: 25px;
             margin-top: 15px; /* Adjusted for better spacing */
             cursor: default;
+        }
+
+        .fa-solid {
+            position: absolute;
+            right: 550px;
+            top: 360px;
+            cursor: pointer;
         }
 
         @keyframes float {
