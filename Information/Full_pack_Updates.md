@@ -13,6 +13,11 @@ I have fixed blank usernames and usernames over twenty characters. Enjoy the res
 I have added a report button! Please do not abuse and have fun!
 ----------------------------------
 # Monday, December 30, 2024, 1:36 PM EDT
-## Full-Pack
+## Christmas-tree
 I have added a new application resulting in me reuploading it. Enjoy!
+----------------------------------
+# Wednesday, January 1st, 2025, 4:06 PM EDT
+## Compliment generator & MaySearch Engine
+I have updated for the release of MaySearch Engine and our Compliment Generator.
+Thank you, happy new years!
 ----------------------------------
