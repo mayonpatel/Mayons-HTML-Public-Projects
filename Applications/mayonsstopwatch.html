@@ -42,6 +42,33 @@
         <button style="background-color: red; width: 150px; height: 50px; font-size: 1.5em" onclick="resetStopwatch()">Reset</button>
     </div>
     <script>
+
+let wakeLock = null;
+
+async function requestWakeLock() {
+    try {
+        wakeLock = await navigator.wakeLock.request("screen");
+        console.log("Wake lock is active");
+
+        // Handle wake lock being released
+        wakeLock.addEventListener("release", () => {
+            console.log("Wake lock was released");
+        });
+    } catch (err) {
+        console.error("Wake lock request failed:", err);
+    }
+}
+
+// Request wake lock when the page loads
+document.addEventListener("DOMContentLoaded", requestWakeLock);
+
+// Try to reapply wake lock when visibility changes
+document.addEventListener("visibilitychange", async () => {
+    if (wakeLock !== null && document.visibilityState === "visible") {
+        requestWakeLock();
+    }
+});
+
         let stopwatchInterval;
         let startTime = 0;
         let elapsedTime = 0;
