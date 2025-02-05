@@ -22,10 +22,17 @@
         }
         button {
             margin: 5px;
-            font-size: 1.5em; /* Slightly larger font size for the button text */
+            font-size: 1.5em;
         }
         h2, h3 {
             text-align: center;
+        }
+        /* Hide the video */
+        #stayAwakeVideo {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
         }
     </style>
 </head>
@@ -41,69 +48,85 @@
         <button style="background-color: lightblue; width: 150px; height: 50px; font-size: 1.5em" onclick="pauseStopwatch()">Pause</button>
         <button style="background-color: red; width: 150px; height: 50px; font-size: 1.5em" onclick="resetStopwatch()">Reset</button>
     </div>
+
+    <!-- Hidden video to prevent sleep -->
+    <video id="stayAwakeVideo" loop>
+        <source src="data:video/mp4;base64,AAAAIGZ0eXBtcDQyAAAAAGlzb21pc28yYXZjMQAAAAxzZXRhAAAACG1vb3YAAABsbXZoZAAAAAB6aGRscnAAAAAAd29vbXAAAAAAc21kaWEAAAAAAAAAAAQAAAABAAEAAAGGAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAABDb2RleC0AAAIYAAAD6AB9qYWxhAAB0c3RzZAAABAAAAAABAAAAAAABAAEAAQAAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" type="video/mp4">
+    </video>
+
     <script>
-
-let wakeLock = null;
-
-async function requestWakeLock() {
-    try {
-        wakeLock = await navigator.wakeLock.request("screen");
-        console.log("Wake lock is active");
-
-        // Handle wake lock being released
-        wakeLock.addEventListener("release", () => {
-            console.log("Wake lock was released");
-        });
-    } catch (err) {
-        console.error("Wake lock request failed:", err);
-    }
-}
-
-// Request wake lock when the page loads
-document.addEventListener("DOMContentLoaded", requestWakeLock);
-
-// Try to reapply wake lock when visibility changes
-document.addEventListener("visibilitychange", async () => {
-    if (wakeLock !== null && document.visibilityState === "visible") {
-        requestWakeLock();
-    }
-});
-
         let stopwatchInterval;
         let startTime = 0;
         let elapsedTime = 0;
         let paused = true;
+        let wakeLock = null;
+        const video = document.getElementById("stayAwakeVideo");
+
+        // Function to request wake lock (if available)
+        async function requestWakeLock() {
+            if ('wakeLock' in navigator) {
+                try {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Wake Lock is active');
+                } catch (err) {
+                    console.error('Wake Lock request failed:', err);
+                }
+            }
+        }
+
+        // Function to release wake lock
+        function releaseWakeLock() {
+            if (wakeLock) {
+                wakeLock.release();
+                wakeLock = null;
+                console.log('Wake Lock released');
+            }
+        }
+
+        function keepDeviceAwake() {
+            requestWakeLock(); // Try using the Wake Lock API
+            video.play().catch(err => console.log("Video play failed:", err)); // Fallback for unsupported browsers
+        }
+
+        function stopKeepingAwake() {
+            releaseWakeLock(); // Release Wake Lock API if active
+            video.pause(); // Stop the video trick
+        }
 
         function startStopwatch() {
             document.getElementById('Startbtn').innerText = 'Start';
-            document.getElementById('Startbtn').style.fontSize = '1.5em';
             document.getElementById('Startbtn').style = 'background-color: lightgreen; width: 150px; height: 50px; font-size: 1.5em';
+
             if (paused) {
                 paused = false;
                 startTime = Date.now() - elapsedTime;
                 stopwatchInterval = setInterval(updateStopwatch, 100);
+                keepDeviceAwake(); // Prevent sleep
             }
         }
 
         function pauseStopwatch() {
             document.getElementById('Startbtn').innerText = 'Resume';
-            document.getElementById('Startbtn').style.fontSize = '1.5em';
             document.getElementById('Startbtn').style = 'background-color: white; width: 150px; height: 50px; font-size: 1.5em';
+
             if (!paused) {
                 paused = true;
                 clearInterval(stopwatchInterval);
                 elapsedTime = Date.now() - startTime;
+                stopKeepingAwake(); // Allow sleep
             }
         }
 
         function resetStopwatch() {
             if (confirm('Are you sure you would like to reset the stopwatch?')) {
-            document.getElementById('Startbtn').innerText = 'Start';
-            document.getElementById('Startbtn').style = 'background-color: lightgreen; width: 150px; height: 50px; font-size: 1.5em';
+                document.getElementById('Startbtn').innerText = 'Start';
+                document.getElementById('Startbtn').style = 'background-color: lightgreen; width: 150px; height: 50px; font-size: 1.5em';
+                
                 paused = true;
                 clearInterval(stopwatchInterval);
                 elapsedTime = 0;
                 document.getElementById('stopwatch').textContent = '00:00:00';
+                stopKeepingAwake(); // Allow sleep
             }
         }
 
