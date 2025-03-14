@@ -23,5 +23,4 @@ I have updated for the release of MaySearch Engine and our Compliment Generator.
 # Friday, March 14, 2025, 12:41 AM EDT
 ## New chatbot application resulting in whole thing getting updated
 Yeah, was a fun one. Anyways, enjoy!
-Thank you, happy new years!
 ----------------------------------
