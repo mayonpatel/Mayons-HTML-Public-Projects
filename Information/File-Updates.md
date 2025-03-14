@@ -14,3 +14,6 @@ I have added a report button! Please do not abuse and have fun!
 ## Main page
 I have added a new link to the new stop watch. Enjoy!
 ----------------------------------
+# Friday, March 14, 2024 12:43 EDT
+## Main page
+I have added a new link to the new chatbot. Enjoy!
