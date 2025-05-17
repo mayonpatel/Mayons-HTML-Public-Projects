@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta property="og:title" content="Mayon's HTML Website" />
+<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+<meta property="og:url" content="https://mayon.pages.dev" />
+<meta property="og:type" content="website" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayon's Odd & Even Receiver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a; /* Dark Background */
+            color: #f0f0f0; /* Light Text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ensure full height */
+            padding: 2rem;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        h1, h2, h3 {
+            color: #64ffda; /* Teal Highlight */
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #a8b2d1; /* Light Blue Link */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #64ffda; /* Teal on hover */
+        }
+
+        /* Input and Button Styling */
+        input[type="number"] {
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #262626;
+            color: #f0f0f0;
+            width: 200px; /* Adjust width as needed */
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #64ffda; /* Teal Button */
+            color: #1a1a1a; /* Dark Text */
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0 0.5rem;
+        }
+
+        button:hover {
+            background-color: #4CAF50; /* Darker Teal on Hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Display Button Styling */
+        #displaybtn {
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: #262626; /* Darker Card Background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card Shadow */
+            text-align: left;
+            white-space: pre-line; /* Respect line breaks */
+            cursor: auto; /* Remove hover effect */
+            color: #f0f0f0;
+            font-size: 1rem;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
+            margin: 2rem 0;
+        }
+
+        /* Footer Styling */
+        footer {
+            margin-top: auto; /* Stick to the bottom */
+            padding: 1rem 0;
+            text-align: center;
+            color: #a8b2d1;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            input[type="number"] {
+                width: 100%;
+            }
+            button {
+                width: calc(50% - 1rem);
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Mayon's Odd & Even Receiver</h2>
+    <p>Enter a number below to receive all odd or even numbers up to that number.</p>
+
+    <input id="textbox" type="number" placeholder="Enter a number">
+
+    <div>
+        <button onclick="getValueEven()">Get Even Numbers</button>
+        <button onclick="getValueOdd()">Get Odd Numbers</button>
+        <button onclick="resetNumbers()">Clear</button>
+    </div>
+
+    <button id="displaybtn"></button>
+    <div class="separator"></div>
+    <h3><a href="mainpage.html">Back to Home</a></h3>
+
+    <footer>
+        &copy; 2025 Mayon Patel. All rights reserved.
+    </footer>
+
+    <script>
+        function getValueEven() {
+            var num = document.getElementById('textbox').value;
+            var evenNumbers = "";
+            for (var i = 0; i <= num; i++) {
+                if (i % 2 === 0) {
+                    evenNumbers += i + "<br/>";
+                }
+            }
+            document.getElementById('displaybtn').innerHTML = evenNumbers;
+        }
+
+        function getValueOdd() {
+            var num = document.getElementById('textbox').value;
+            var oddNumbers = "";
+            for (var i = 0; i <= num; i++) {
+                if (i % 2 !== 0) {
+                    oddNumbers += i + "<br/>";
+                }
+            }
+            document.getElementById('displaybtn').innerHTML = oddNumbers;
+        }
+
+        function resetNumbers() {
+            if (confirm('Are you sure you would like to clear?')) {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

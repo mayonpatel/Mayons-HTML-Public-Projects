@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta property="og:title" content="Mayon's HTML Website" />
+<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+<meta property="og:url" content="https://mayon.pages.dev" />
+<meta property="og:type" content="website" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayon's Stopwatch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a; /* Dark Background */
+            color: #f0f0f0; /* Light Text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ensure full height */
+            padding: 2rem;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        h1, h2, h3 {
+            color: #64ffda; /* Teal Highlight */
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 3rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        a {
+            color: #a8b2d1; /* Light Blue Link */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #64ffda; /* Teal on hover */
+        }
+
+
+        /* Stopwatch Styling */
+        #stopwatch {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #64ffda;
+            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+            background-color: #262626;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #Startbtn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        #Startbtn:hover {
+            background-color: #367c39;
+        }
+
+        button[onclick="pauseStopwatch()"] {
+            background-color: #2196F3; /* Blue */
+            color: white;
+        }
+
+        button[onclick="pauseStopwatch()"]:hover {
+            background-color: #1565c0;
+        }
+
+        button[onclick="resetStopwatch()"] {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+
+        button[onclick="resetStopwatch()"]:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Separator */
+        .separator {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
+            margin: 2rem 0;
+        }
+
+        /* Footer Styling */
+        footer {
+            margin-top: auto; /* Stick to the bottom */
+            padding: 1rem 0;
+            text-align: center;
+            color: #a8b2d1;
+            font-size: 0.8rem;
+        }
+
+        /* Hide the video */
+        #stayAwakeVideo {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            #stopwatch {
+                font-size: 2.5em;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mayon's Stopwatch</h1>
+
+    <p><a href="mainpage.html">Back to Home</a></p>
+
+    <div id="stopwatch">00:00:00</div>
+
+    <div class="buttons">
+        <button id="Startbtn" onclick="startStopwatch()">Start</button>
+        <button onclick="pauseStopwatch()">Pause</button>
+        <button onclick="resetStopwatch()">Reset</button>
+    </div>
+
+    <!-- Hidden video to prevent sleep -->
+    <video id="stayAwakeVideo" loop>
+        <source src="data:video/mp4;base64,AAAAIGZ0eXBtcDQyAAAAAGlzb21pc28yYXZjMQAAAAxzZXRhAAAACG1vb3YAAABsbXZoZAAAAAB6aGRscnAAAAAAd29vbXAAAAAAc21kaWEAAAAAAAAAAAQAAAABAAEAAAGGAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAAABDb2RleC0AAAIYAAAD6AB9qYWxhAAB0c3RzZAAABAAAAAABAAAAAAABAAEAAQAAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" type="video/mp4">
+    </video>
+
+    <div class="separator"></div>
+
+    <footer>
+        &copy; 2025 Mayon Patel. All rights reserved.
+    </footer>
+
+    <script>
+        let stopwatchInterval;
+        let startTime = 0;
+        let elapsedTime = 0;
+        let paused = true;
+        let wakeLock = null;
+        const video = document.getElementById("stayAwakeVideo");
+
+        // Function to request wake lock (if available)
+        async function requestWakeLock() {
+            if ('wakeLock' in navigator) {
+                try {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Wake Lock is active');
+                } catch (err) {
+                    console.error('Wake Lock request failed:', err);
+                }
+            }
+        }
+
+        // Function to release wake lock
+        function releaseWakeLock() {
+            if (wakeLock) {
+                wakeLock.release();
+                wakeLock = null;
+                console.log('Wake Lock released');
+            }
+        }
+
+        function keepDeviceAwake() {
+            requestWakeLock(); // Try using the Wake Lock API
+            video.play().catch(err => console.log("Video play failed:", err)); // Fallback for unsupported browsers
+        }
+
+        function stopKeepingAwake() {
+            releaseWakeLock(); // Release Wake Lock API if active
+            video.pause(); // Stop the video trick
+        }
+
+        function startStopwatch() {
+            const startBtn = document.getElementById('Startbtn');
+            startBtn.innerText = 'Pause';
+            startBtn.style.backgroundColor = '#2196F3';
+
+
+            if (paused) {
+                paused = false;
+                startTime = Date.now() - elapsedTime;
+                stopwatchInterval = setInterval(updateStopwatch, 100);
+                keepDeviceAwake(); // Prevent sleep
+            }
+        }
+
+        function pauseStopwatch() {
+            const startBtn = document.getElementById('Startbtn');
+            startBtn.innerText = 'Resume';
+            startBtn.style.backgroundColor = '#4CAF50';
+
+            if (!paused) {
+                paused = true;
+                clearInterval(stopwatchInterval);
+                elapsedTime = Date.now() - startTime;
+                stopKeepingAwake(); // Allow sleep
+            }
+        }
+
+        function resetStopwatch() {
+            if (confirm('Are you sure you would like to reset the stopwatch?')) {
+                const startBtn = document.getElementById('Startbtn');
+                startBtn.innerText = 'Start';
+                startBtn.style.backgroundColor = '#4CAF50';
+
+                paused = true;
+                clearInterval(stopwatchInterval);
+                elapsedTime = 0;
+                document.getElementById('stopwatch').textContent = '00:00:00';
+                stopKeepingAwake(); // Allow sleep
+            }
+        }
+
+        function updateStopwatch() {
+            elapsedTime = Date.now() - startTime;
+            let totalSeconds = Math.floor(elapsedTime / 1000);
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+
+            document.getElementById('stopwatch').textContent =
+                (hours < 10 ? '0' : '') + hours + ':' +
+                (minutes < 10 ? '0' : '') + minutes + ':' +
+                (seconds < 10 ? '0' : '') + seconds;
+        }
+    </script>
+</body>
+</html>

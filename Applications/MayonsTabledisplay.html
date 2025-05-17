@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta property="og:title" content="Mayon's HTML Website" />
+<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+<meta property="og:url" content="https://mayon.pages.dev" />
+<meta property="og:type" content="website" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayon's Time Tables Display</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1a1a1a; /* Dark Background */
+      color: #f0f0f0; /* Light Text */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      color: #64ffda; /* Teal Highlight */
+      margin-bottom: 1rem;
+      text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.75rem; /* Slightly larger for emphasis */
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    input, button {
+      margin: 10px;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      background-color: #262626; /* Darker Input Background */
+      color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      outline: none; /* Remove default outline */
+    }
+
+    input:focus, button:focus {
+      box-shadow: 0 0 5px #64ffda; /* Teal glow on focus */
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #333; /* Darker Button Background */
+    }
+
+    button:hover {
+      background-color: #64ffda; /* Teal on hover */
+      color: #1a1a1a;
+      transform: translateY(-2px); /* Slight lift on hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    a {
+      color: #a8b2d1; /* Light Blue Link */
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: inline-block; /* Make the link a block element for padding */
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      background-color: #262626;
+      margin-top: 1rem; /* Added margin for spacing */
+    }
+
+    a:hover {
+      color: #64ffda; /* Teal on hover */
+      background-color: #333;
+      transform: translateY(-2px); /* Slight lift on hover */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    }
+
+    label {
+      font-size: 1.2rem;
+      display: block;
+      margin-bottom: 0.5rem; /* Add some space between labels */
+    }
+
+    .separator {
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
+      margin: 2rem 0;
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      text-align: center;
+      color: #a8b2d1;
+      font-size: 0.8rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mayon's Multiplication Tables</h1>
+
+  <p>Enter a number to generate its multiplication table:</p>
+
+  <input id="input" type="number" placeholder="Enter a number">
+  <button onclick="storeUserInput()">Get Table</button>
+
+  <div class="separator"></div>
+
+  <h2>Multiplication Table</h2>
+
+  <label id="x1"></label>
+  <label id="x2"></label>
+  <label id="x3"></label>
+  <label id="x4"></label>
+  <label id="x5"></label>
+  <label id="x6"></label>
+  <label id="x7"></label>
+  <label id="x8"></label>
+  <label id="x9"></label>
+  <label id="x10"></label>
+
+  <div class="separator"></div>
+
+  <button onclick="reload()">Reset Tables</button>
+  <a href="mainpage.html">Home</a>
+
+  <script>
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active!');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    }
+
+    function storeUserInput() {
+      const userinput = document.getElementById('input').value;
+      console.log(`Input submitted: ${userinput}`);
+      giveTable();
+    }
+
+    function giveTable() {
+      const usersinput = document.getElementById('input').value;
+      document.getElementById('x1').innerText = `${usersinput} x 1 = ${usersinput}`;
+      document.getElementById('x2').innerText = `${usersinput} x 2 = ${usersinput * 2}`;
+      document.getElementById('x3').innerText = `${usersinput} x 3 = ${usersinput * 3}`;
+      document.getElementById('x4').innerText = `${usersinput} x 4 = ${usersinput * 4}`;
+      document.getElementById('x5').innerText = `${usersinput} x 5 = ${usersinput * 5}`;
+      document.getElementById('x6').innerText = `${usersinput} x 6 = ${usersinput * 6}`;
+      document.getElementById('x7').innerText = `${usersinput} x 7 = ${usersinput * 7}`;
+      document.getElementById('x8').innerText = `${usersinput} x 8 = ${usersinput * 8}`;
+      document.getElementById('x9').innerText = `${usersinput} x 9 = ${usersinput * 9}`;
+      document.getElementById('x10').innerText = `${usersinput} x 10 = ${usersinput * 10}`;
+    }
+
+    function reload() {
+      if (confirm('Are you sure you would like to reset the tables?')) {
+        location.reload();
+      }
+    }
+  </script>
+
+  <footer>
+    &copy; 2025 Mayon Patel. All rights reserved.
+  </footer>
+
+</body>
+</html>

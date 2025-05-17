@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta property="og:title" content="Mayon's HTML Website" />
+<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+<meta property="og:url" content="https://mayon.pages.dev" />
+<meta property="og:type" content="website" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayon's Text Reverser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1a1a1a; /* Dark Background */
+      color: #f0f0f0; /* Light Text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      color: #64ffda; /* Teal Highlight */
+      margin-bottom: 1rem;
+      text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 2rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #a8b2d1; /* Light Blue Link */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #64ffda; /* Teal on hover */
+    }
+
+    input[type="text"] {
+      padding: 0.75rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #262626;
+      color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      width: 250px;
+      outline: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #3498db; /* Blue Button */
+      color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: #2980b9; /* Darker Blue on Hover */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #display {
+      width: 200px;
+      height: 45px;
+      font-size: 25px;
+      background-color: #2ecc71; /* Green Display */
+      color: #f0f0f0;
+    }
+
+    /* Separator */
+    .separator {
+      width: 80%;
+      max-width: 600px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
+      margin: 2rem 0;
+    }
+
+    /* Footer Styling */
+    footer {
+      margin-top: 2rem;
+      padding: 1rem 0;
+      text-align: center;
+      color: #a8b2d1;
+      font-size: 0.8rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      input[type="text"], button, #display {
+        width: 100%; /* Full width on smaller screens */
+        max-width: 300px; /* Limit maximum width */
+      }
+
+      #display {
+        height: auto; /* Adjust height automatically */
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mayon's Text Reverser</h1>
+
+  <p>Enter text to reverse it!</p>
+
+  <input type="text" id="number" placeholder="Enter text here">
+  <button onclick="submit()">Reverse</button>
+  <button onclick="resetDisplay()">Reset Display</button>
+
+  <button id="display">Display</button>
+
+
+  <div class="separator"></div>
+
+  <h3><a href="mainpage.html">Home</a></h3>
+
+  <script>
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active!');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    }
+
+    function resetDisplay() {
+      if (confirm('Are you sure you would like to reset the display?')) {
+        location.reload();
+      }
+    }
+
+    function submit() {
+      var num = document.getElementById('number').value;
+      var revnum = num.toString().split('').reverse().join('');
+      document.getElementById('display').innerText = revnum;
+    }
+  </script>
+
+  <footer>
+    &copy; 2025 Mayon Patel. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta property="og:title" content="Mayon's HTML Website" />
+<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+<meta property="og:url" content="https://mayon.pages.dev" />
+<meta property="og:type" content="website" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayon's Colour Chooser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #1a1a1a; /* Dark Background */
+      color: #f0f0f0; /* Light Text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh; /* Ensure full height */
+      padding: 2rem;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    h1, h2, h3, h4 {
+      color: #64ffda; /* Teal Highlight */
+      margin-bottom: 1rem;
+      text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 3rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    a {
+      color: #a8b2d1; /* Light Blue Link */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #64ffda; /* Teal on hover */
+    }
+
+    /* Button Styling */
+    button {
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      color: #1a1a1a; /* Dark Text */
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Separator */
+    .separator {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
+      margin: 2rem 0;
+    }
+
+    /* Footer Styling */
+    footer {
+      margin-top: auto; /* Stick to the bottom */
+      padding: 1rem 0;
+      text-align: center;
+      color: #a8b2d1;
+      font-size: 0.8rem;
+    }
+
+    /* Input Display Styling */
+    #inputDisplay {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background-color: #262626;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body id="style">
+
+  <h1>FLASH WARNING</h1>
+  <p>This page can rapidly change colours.</p>
+
+  <h2>Mayon's Colour Chooser</h2>
+  <p>Choose a background colour!</p>
+
+  <h3 id="inputDisplay">The colour you selected will appear here.</h3>
+
+  <div class="separator"></div>
+
+  <h4>Select a colour:</h4>
+  <div>
+    <button onclick="changeColor('red')">Red</button>
+    <button onclick="changeColor('blue')">Blue</button>
+    <button onclick="changeColor('green')">Green</button>
+    <button onclick="changeColor('orange')">Orange</button>
+    <button onclick="changeColor('yellow')">Yellow</button>
+    <button onclick="changeColor('black')">Black</button>
+    <button onclick="changeColor('cyan')">Cyan</button>
+    <button onclick="changeColor('silver')">Silver</button>
+    <button onclick="changeColor('gold')">Gold</button>
+    <button onclick="changeColor('pink')">Pink</button>
+    <button onclick="changeColor('purple')">Purple</button>
+    <button onclick="changeColor('brown')">Brown</button>
+  </div>
+
+  <div class="separator"></div>
+
+  <a href="mainpage.html">Back to Main Page</a>
+
+  <script>
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active!');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    }
+
+    function changeColor(color) {
+      document.body.style.backgroundColor = color;
+      document.getElementById('inputDisplay').innerText = 'Selected: ' + color;
+    }
+  </script>
+
+  <footer>
+    &copy; 2025 Mayon Patel. All rights reserved.
+  </footer>
+
+</body>
+</html>
