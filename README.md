@@ -2,12 +2,14 @@
 
 ## Please enjoy using my projects and consider leaving a star :D
 
-### IMPORTANT: To use mainpage.html, you must have every other file or it wont work. Also please have it as the exact file name and don't split it into different folders.
+### IMPORTANT: To use mainpage.html, you must have every other file, or it won't work. Please have the exact file name and don't split it into different folders.
 
 Some items may be obfuscated for security reasons.
 
-Do not claim my files as your own, or upload it elsewhere without credit and link to this github (https://github.com/mayonpatel/Mayons-HTML-Public-Projects).
+Do not claim my files as your own or upload them elsewhere without credit and a link to this GitHub (https://github.com/mayonpatel/Mayons-HTML-Public-Projects).
 
-Official Site: https://mayon.pages.dev
+Links
+[https://mayon.pages.dev](Official-Website)
+[https://github.com/mayonpatel/Mayons-HTML-Public-Projects](Official-Github)
 
 © 2025 Mayon Patel. All rights reserved.
