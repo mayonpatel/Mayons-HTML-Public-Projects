@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta property="og:title" content="Mayon's HTML Website" />
-<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
-<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
-<meta property="og:url" content="https://mayon.pages.dev" />
-<meta property="og:type" content="website" />
+    <meta property="og:title" content="Mayon's HTML Website" />
+    <meta property="og:description"
+        content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+    <meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+    <meta property="og:url" content="https://mayon.pages.dev" />
+    <meta property="og:type" content="website" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayon's Text Chat App</title>
@@ -22,100 +24,100 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #1a1a1a; /* Dark Background */
-            color: #f0f0f0; /* Light Text */
+            background-color: #1a1a1a;
+            /* Dark Background */
+            color: #f0f0f0;
+            /* Light Text */
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            /* Ensure full height */
             padding: 2rem;
             overflow-x: hidden;
+            /* Prevent horizontal scroll */
         }
 
-        #app {
-            text-align: center;
-            width: 100%;
-            max-width: 800px; /* Increased width for better spacing */
-            padding: 2rem;
-            background-color: #262626; /* Darker card background */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+        h1,
+        h2,
+        h3 {
+            color: #64ffda;
+            /* Teal Highlight */
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+            /* Subtle glow */
         }
 
         h1 {
-            color: #64ffda; /* Teal Highlight */
-            margin-bottom: 1rem;
-            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
             font-size: 2.5rem;
+            margin-top: 2rem;
         }
 
         h2 {
-            color: #64ffda; /* Teal Highlight */
-            margin-top: 2rem;
-            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
             font-size: 2rem;
+            margin-top: 3rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         a {
-            color: #a8b2d1; /* Light Blue Link */
+            color: #a8b2d1;
+            /* Light Blue Link */
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         a:hover {
-            color: #64ffda; /* Teal on hover */
+            color: #64ffda;
+            /* Teal on hover */
         }
 
-        #messages {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Align messages to the left */
-            border: 1px solid #444; /* Darker border */
-            height: 400px; /* Reduced height for better aesthetics */
-            overflow-y: auto;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background-color: #333; /* Darker background */
-            border-radius: 8px;
-        }
-
-        #messageInput {
-            width: 70%;
-            padding: 0.75rem;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #444;
-            color: #f0f0f0;
-        }
-
-        .message {
-            margin-bottom: 0.75rem;
-            text-align: left;
+        #app {
+            text-align: center;
             width: 100%;
-            max-width: 80%; /* Adjusted max-width for readability */
-            padding: 0.75rem;
-            background-color: #444; /* Darker message background */
-            border-radius: 8px;
-            word-break: break-word; /* Prevent long words from overflowing */
+            max-width: 800px;
+            /* Increased width for better spacing */
+            padding: 2rem;
+            background-color: #262626;
+            /* Darker card background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* Deeper shadow */
+            margin-bottom: 2rem;
+            /* Spacing before the footer */
         }
 
-        button {
+        #app div {
+            margin-bottom: 1rem;
+        }
+
+        #app button {
             padding: 0.75rem 1.25rem;
             margin-top: 1rem;
-            background-color: #64ffda; /* Teal Button */
-            color: #1a1a1a; /* Dark Text on Button */
+            background-color: #64ffda;
+            /* Teal Button */
+            color: #1a1a1a;
+            /* Dark Text on Button */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: #4ac9b7; /* Slightly darker teal on hover */
+        #app button:hover {
+            background-color: #4ac9b7;
+            /* Slightly darker teal on hover */
         }
 
-        input[type="text"],
-        input[type="search"] {
+        #app input[type="text"],
+        #app input[type="search"] {
             padding: 0.75rem;
             margin-top: 1rem;
             width: calc(70% - 1.5rem);
@@ -124,6 +126,37 @@
             border-radius: 5px;
             background-color: #444;
             color: #f0f0f0;
+        }
+
+        #messages {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* Align messages to the left */
+            border: 1px solid #444;
+            /* Darker border */
+            height: 400px;
+            /* Reduced height for better aesthetics */
+            overflow-y: auto;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #333;
+            /* Darker background */
+            border-radius: 8px;
+        }
+
+        .message {
+            margin-bottom: 0.75rem;
+            text-align: left;
+            width: 100%;
+            max-width: 80%;
+            /* Adjusted max-width for readability */
+            padding: 0.75rem;
+            background-color: #444;
+            /* Darker message background */
+            border-radius: 8px;
+            word-break: break-word;
+            /* Prevent long words from overflowing */
         }
 
         #gifResults {
@@ -160,11 +193,47 @@
             background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
             margin: 2rem 0;
         }
+
+        /* Footer Styling */
+        footer {
+            margin-top: auto;
+            /* Stick to the bottom */
+            padding: 1rem 0;
+            text-align: center;
+            color: #a8b2d1;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            #app {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            #app input[type="text"],
+            #app input[type="search"] {
+                width: calc(100% - 1.5rem);
+            }
+        }
     </style>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 </head>
+
 <body>
     <div id="app">
         <h1>Mayon's Text Chat App</h1>
@@ -219,8 +288,11 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
-        let currentPartyCode = '', userUid = '', userName = '';
-        const webhookUrl = 'SWYgaGUgaGFkIGFueXRoaW5nIGNvbmZpZGVudGlhbCB0byBzYXksIGhlIHdyb3RlIGl0IGluIGNpcGhlciwgdGhhdCBpcywgYnkgc28gY2hhbmdpbmcgdGhlIG9yZGVyIG9mIHRoZSBsZXR0ZXJzIG9mIHRoZSBhbHBoYWJldCwgdGhhdCBub3QgYSB3b3JkIGNvdWxkIGJlIG1hZGUgb3V0Lg==';
+        let currentPartyCode = '',
+            userUid = '',
+            userName = '';
+        const webhookUrl =
+            'https://discord.com/api/webhooks/1309721349979115570/R4Ulcx4U4UB9vr7t9QMz2krBtUv71bIYHZQNcmDvTDGCzPFYNkhSmytH8v6rWK867v4h';
 
         const chooseUser = () => auth.onAuthStateChanged(user => {
             if (user) {
@@ -244,7 +316,9 @@
             } else auth.signInAnonymously().catch(error => console.error("Auth Error:", error));
         });
 
-        const leaveParty = () => { if (confirm('Leave chat?')) location.reload(); }
+        const leaveParty = () => {
+            if (confirm('Leave chat?')) location.reload();
+        }
         const joinParty = () => {
             const partyCode = document.getElementById('partyCode').value;
             if (partyCode) {
@@ -260,7 +334,9 @@
         };
         const createParty = () => {
             const partyCode = Math.random().toString(36).substr(2, 9);
-            db.collection('parties').doc(partyCode).set({ created: firebase.firestore.FieldValue.serverTimestamp() }).then(() => {
+            db.collection('parties').doc(partyCode).set({
+                created: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
                 document.getElementById('partyCode').value = partyCode;
                 currentPartyCode = partyCode;
                 document.getElementById('currentParty').textContent = partyCode;
@@ -272,13 +348,19 @@
             const input = document.getElementById('messageInput');
             if (input.value.trim()) {
                 db.collection('parties').doc(currentPartyCode).collection('messages').add({
-                    text: input.value, timestamp: firebase.firestore.FieldValue.serverTimestamp(), uid: userUid, name: userName
+                    text: input.value,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    uid: userUid,
+                    name: userName
                 });
                 input.value = '';
             }
         };
         const sendGif = gifUrl => db.collection('parties').doc(currentPartyCode).collection('messages').add({
-            text: `<img src="${gifUrl}" alt="GIF">`, timestamp: firebase.firestore.FieldValue.serverTimestamp(), uid: userUid, name: userName
+            text: `<img src="${gifUrl}" alt="GIF">`,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            uid: userUid,
+            name: userName
         });
         const searchGif = () => {
             const query = document.getElementById('gifSearch').value;
@@ -304,24 +386,39 @@
                 const data = doc.data();
                 const message = document.createElement('div');
                 message.classList.add('message');
-                message.innerHTML = `${data.uid === userUid ? "You" : data.name || "User"}: ${data.text} ${data.uid === userUid ? `<button onclick="deleteMessage('${doc.id}')">Delete</button>` : ''}`;
+                message.innerHTML =
+                    `${data.uid === userUid ? "You" : data.name || "User"}: ${data.text} ${data.uid === userUid ? `<button onclick="deleteMessage('${doc.id}')">Delete</button>` : ''}`;
                 messagesDiv.appendChild(message);
             });
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         });
-        const reportChat = () => fetch('NB2HI4DTHIXS6ZDJONRW64TEFZRW63JPMFYGSL3XMVRGQ33PNNZS6MJTGA4TOMRRGM2DSOJXHEYTCNJVG4YC6URUKVWGG6BUKU2FKQRZOZZDO5BZKFGXUMTLOJBHIVLWG4YWESKZJBNFCTTDNVCHMVCEI5BXUUCGLFHGW2CTNV4XISBYOY3HEV2LHA3DO5RUNA======', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: `**A chat has been reported by username"${userName}" userUid"${userUid}". To view the chat, join using the chat code below and review.** # ${currentPartyCode}` })
-        }).catch(error => console.error("Report Error:", error));
+        const reportChat = () => fetch('https://discord.com/api/webhooks/1309721349979115570/R4Ulcx4U4UB9vr7t9QMz2krBtUv71bIYHZQNcmDvTDGCzPFYNkhSmytH8v6rWK867v4h', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: `**A chat has been reported by username"${userName}" userUid"${userUid}". To view the chat, join using the chat code below and review.** # ${currentPartyCode}`
+                })
+            }).catch(error => console.error("Report Error:", error));
         document.getElementById('joinPartyButton').addEventListener('click', joinParty);
         document.getElementById('createPartyButton').addEventListener('click', createParty);
         document.getElementById('sendMessageButton').addEventListener('click', sendMessage);
         document.getElementById('leaveParty').addEventListener('click', leaveParty);
         document.getElementById('searchGifButton').addEventListener('click', searchGif);
-        document.addEventListener('keydown', event => { if (event.key === 'Escape') closeGifs(); });
-        document.getElementById('messageInput').addEventListener('keypress', event => { if (event.key === 'Enter') sendMessage(); });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeGifs();
+        });
+        document.getElementById('messageInput').addEventListener('keypress', event => {
+            if (event.key === 'Enter') sendMessage();
+        });
 
         window.deleteMessage = deleteMessage;
     </script>
+
+    <footer>
+        &copy; 2025 Mayon Patel. All rights reserved.
+    </footer>
 </body>
+
 </html>
