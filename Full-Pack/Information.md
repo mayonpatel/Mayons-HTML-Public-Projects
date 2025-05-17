@@ -5,3 +5,5 @@ The file, Mayons_Full_Pack.zip includes all the files in one zip file! This make
 
 The full pack is only updated when 2+ new apps are added, or there is a large bug fix.
 Updates of the full pack are posted in: Information>Full_pack_Updates.md
+
+© 2025 Mayon Patel. All rights reserved.
