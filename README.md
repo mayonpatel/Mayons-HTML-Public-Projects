@@ -8,9 +8,7 @@ Some items may be obfuscated for security reasons.
 
 Do not claim my files as your own or upload them elsewhere without credit and a link to this GitHub (https://github.com/mayonpatel/Mayons-HTML-Public-Projects).
 
-Links
-[https://mayon.pages.dev](OfficialWebsite)
-
-[https://github.com/mayonpatel/Mayons-HTML-Public-Projects](OfficialGithub)
+Official Website: https://mayon.pages.dev
+Official Github: https://github.com/mayonpatel/Mayons-HTML-Public-Projects
 
 © 2025 Mayon Patel. All rights reserved.
