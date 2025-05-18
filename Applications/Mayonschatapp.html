@@ -291,8 +291,6 @@
         let currentPartyCode = '',
             userUid = '',
             userName = '';
-        const webhookUrl =
-            'https://discord.com/api/webhooks/1309721349979115570/R4Ulcx4U4UB9vr7t9QMz2krBtUv71bIYHZQNcmDvTDGCzPFYNkhSmytH8v6rWK867v4h';
 
         const chooseUser = () => auth.onAuthStateChanged(user => {
             if (user) {
@@ -392,15 +390,46 @@
             });
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         });
-        const reportChat = () => fetch('https://discord.com/api/webhooks/1309721349979115570/R4Ulcx4U4UB9vr7t9QMz2krBtUv71bIYHZQNcmDvTDGCzPFYNkhSmytH8v6rWK867v4h', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    content: `**A chat has been reported by username"${userName}" userUid"${userUid}". To view the chat, join using the chat code below and review.** # ${currentPartyCode}`
-                })
-            }).catch(error => console.error("Report Error:", error));
+
+function reportChat(username, message, reason) {
+  const workerUrl = "https://muddy-wind-c069.mayonpatel16.workers.dev/";
+var offensiveUser = prompt("Who(s) being offensive?")
+var additionalNote = prompt("Do you have an additional note for the moderator?")
+  const payload = {
+    content: `# New report made.
+	Username of reporter: ${userName}
+	UserUid of reporter: ${userUid}
+	Chat Code: ${currentPartyCode}
+	Username of person being offensive: ${offensiveUser}
+	Additional Note: ${additionalNote}`
+  };
+
+  console.log("Sending report to worker...");
+  console.log("Payload:", payload);
+
+  fetch(workerUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    console.log("Response status:", response.status);
+    if (!response.ok) {
+      throw new Error("Failed to report chat");
+    }
+    return response.text();
+  })
+  .then(data => {
+    console.log("Report successfully sent via Worker:", data);
+    alert("Chat reported successfully!");
+  })
+  .catch(error => {
+    console.error("Error reporting chat via Worker:", error);
+    alert("Failed to report chat: " + error.message);
+  });
+}
         document.getElementById('joinPartyButton').addEventListener('click', joinParty);
         document.getElementById('createPartyButton').addEventListener('click', createParty);
         document.getElementById('sendMessageButton').addEventListener('click', sendMessage);
