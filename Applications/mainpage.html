@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta property="og:title" content="Mayon's HTML Website" />
-<meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
-<meta property="og:image" content="https://mayon.pages.dev/logo.png" />
-<meta property="og:url" content="https://mayon.pages.dev" />
-<meta property="og:type" content="website" />
+  <meta property="og:title" content="Mayon's HTML Website" />
+  <meta property="og:description" content="On this website, Mayon posts random HTML thingys he makes. Some useful, and some... not really." />
+  <meta property="og:image" content="https://mayon.pages.dev/logo.png" />
+  <meta property="og:url" content="https://mayon.pages.dev" />
+  <meta property="og:type" content="website" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mayon's Applications Hub</title>
@@ -13,135 +13,138 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset some default styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #1a1a1a; /* Dark Background */
-      color: #f0f0f0; /* Light Text */
-      display: flex;
-      flex-direction: column;
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+      display: flex; flex-direction: column;
       align-items: center;
-      min-height: 100vh; /* Ensure full height */
+      min-height: 100vh;
       padding: 2rem;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden;
     }
 
-    h1, h2, h3 {
-      color: #64ffda; /* Teal Highlight */
-      margin-bottom: 1rem;
-      text-shadow: 0 0 5px rgba(100, 255, 218, 0.5); /* Subtle glow */
+    /* Headings & Text */
+    h1,h2,h3 { color: #64ffda; text-shadow: 0 0 5px rgba(100,255,218,0.5); }
+    h1 { font-size: 2.5rem; margin: 2rem 0 1rem; }
+    h2 { font-size: 2rem; margin: 3rem 0 1rem; }
+    p { margin-bottom: 1.5rem; line-height: 1.6; }
+    a { color: #a8b2d1; text-decoration: none; transition: color .3s; }
+    a:hover { color: #64ffda; }
+
+    /* App List */
+    .app-list { list-style: none; width: 80%; max-width: 800px; }
+    .app-list li { margin-bottom: .75rem; }
+    .app-list a {
+      display: block; padding: 1rem;
+      background: #262626; border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .app-list a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-top: 2rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-top: 3rem;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-    }
-
-    p {
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    a {
-      color: #a8b2d1; /* Light Blue Link */
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #64ffda; /* Teal on hover */
-    }
-
-    /* Application List Styling */
-    .app-list {
-      list-style: none;
-      padding: 0;
-      width: 80%;
-      max-width: 800px;
-    }
-
-    .app-list li {
-      margin-bottom: 0.75rem;
-      text-align: left; /* Align items to the left */
-    }
-
-    .app-list li a {
-      display: block;
-      padding: 1rem;
-      background-color: #262626; /* Darker Card Background */
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card Shadow */
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .app-list li a:hover {
-      transform: translateY(-3px); /* Slight lift on hover */
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Separator */
+    /* Separators & Footer */
     .separator {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.5), rgba(100, 255, 218, 0.1));
+      width: 100%; height: 1px;
+      background: linear-gradient(
+        to right,
+        rgba(100,255,218,0.1),
+        rgba(100,255,218,0.5),
+        rgba(100,255,218,0.1)
+      );
       margin: 2rem 0;
     }
-
-    /* Footer Styling */
     footer {
-      margin-top: auto; /* Stick to the bottom */
-      padding: 1rem 0;
-      text-align: center;
-      color: #a8b2d1;
-      font-size: 0.8rem;
+      margin-top: auto; padding: 1rem 0;
+      text-align: center; color: #a8b2d1; font-size: .8rem;
     }
 
-    /* Responsive Design */
+    /* Responsive */
     @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
+      body { padding: 1rem; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+      .app-list { width: 100%; }
+    }
 
-      h1 {
-        font-size: 2rem;
-      }
+    /* Other Domains Button */
+    #other-domains-btn {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: #262626; color: #64ffda;
+      border: 2px solid #64ffda;
+      padding: .75rem 1.25rem; border-radius: 50px;
+      font-weight: 500; cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background .3s, color .3s, transform .2s;
+      z-index: 1000;
+    }
+    #other-domains-btn:hover {
+      background: #64ffda; color: #1a1a1a;
+      transform: translateY(-2px);
+    }
 
-      h2 {
-        font-size: 1.75rem;
-      }
+    /* Overlay Menu */
+    #other-domains-menu {
+      position: fixed; bottom: 4rem; right: 2rem;
+      width: max-content;        /* shrink/grow to fit */
+      min-width: 220px;          /* never smaller than before */
+      background: #262626;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      padding: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: .75rem;
+      z-index: 1001;
+      animation: fadeIn .3s ease-out;
+    }
+    #other-domains-menu.open { display: flex; }
 
-      .app-list {
-        width: 100%;
-      }
+    #other-domains-menu a {
+      white-space: nowrap;       /* prevent wrapping */
+      color: #f0f0f0; padding: .5rem .75rem;
+      border-radius: 4px; transition: background .3s;
+    }
+    #other-domains-menu a:hover {
+      background: rgba(100,255,218,0.1);
+    }
+
+    /* Close Button */
+    #other-domains-menu .close-btn {
+      position: absolute; top: .5rem; right: .5rem;
+      background: none; border: none;
+      font-size: 1.2rem; color: #a8b2d1;
+      cursor: pointer; transition: color .2s;
+    }
+    #other-domains-menu .close-btn:hover {
+      color: #64ffda;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
   <h1>Mayon's Applications Hub</h1>
-
   <p>Welcome to my collection of web applications! Check out the projects below.</p>
-  <p><a href="https://github.com/mayonpatel/Mayons-HTML-Public-Projects" target="_blank" rel="noopener noreferrer">Official Github Page</a></p>
+  <p>
+    <a href="https://github.com/mayonpatel/Mayons-HTML-Public-Projects"
+       target="_blank" rel="noopener noreferrer">
+      Official Github Page
+    </a>
+  </p>
 
   <div class="separator"></div>
-
   <h2>Applications</h2>
-
   <ul class="app-list">
     <li><a href="MayonsIcecreamEater.html">Mayon's Ice Cream Eater</a></li>
     <li><a href="MayonsCalculator.html">Mayon's Calculator</a></li>
@@ -158,29 +161,51 @@
     <li><a href="MaySearch.html">MaySearch Engine</a></li>
     <li><a href="MayonsChatbot.html">Mayon's ChatBot</a></li>
   </ul>
-
   <div class="separator"></div>
 
+  <!-- Other Domains Trigger -->
+  <button id="other-domains-btn">Other Domains</button>
+
+  <!-- Other Domains Menu -->
+  <div id="other-domains-menu">
+    <button class="close-btn" aria-label="Close menu">&times;</button>
+    <a href="https://superhardmath123.pages.dev" target="_self">superhardmath123.pages.dev</a>
+    <a href="https://hardeducation.pages.dev"      target="_self">hardeducation.pages.dev</a>
+    <a href="https://sciencefactsforkids.pages.dev" target="_self">sciencefactsforkids.pages.dev</a>
+    <a href="https://frenchgamesgr6.pages.dev"      target="_self">frenchgamesgr6.pages.dev</a>
+    <a href="https://mayon.pages.dev"               target="_self">mayon.pages.dev (main)</a>
+  </div>
+
   <script>
-    let wakeLock = null;
+    // auto-update copyright
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent =
+        new Date().getFullYear();
+    });
 
-    async function requestWakeLock() {
-      try {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock is active!');
-      } catch (err) {
-        console.error(`${err.name}, ${err.message}`);
-      }
-    }
+    // menu open/close logic
+    const btn      = document.getElementById('other-domains-btn');
+    const menu     = document.getElementById('other-domains-menu');
+    const closeBtn = menu.querySelector('.close-btn');
 
-    // Optionally call requestWakeLock() on page load or after a user interaction
-    // requestWakeLock(); // Uncomment to enable wake lock on page load
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
 
+    closeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      menu.classList.remove('open');
+    });
+
+    menu.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', () => {
+      menu.classList.remove('open');
+    });
   </script>
 
   <footer>
-    &copy; 2025 Mayon Patel.  All rights reserved.
+    &copy; <span id="year"></span> Mayon Patel. All rights reserved.
   </footer>
-
 </body>
 </html>
