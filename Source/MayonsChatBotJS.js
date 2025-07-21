@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
     const apiKeyError = document.getElementById('apiKeyError');
     const changeKeyBtn = document.getElementById('changeKeyBtn');
+    const clearChatBtn = document.getElementById('clearChatBtn');
     const chatApp = document.getElementById('chatApp');
     const chatContainer = document.getElementById('chatContainer');
     const spinner = document.getElementById('spinner');
@@ -104,8 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function validateKey(key) {
         try {
             const res = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/` +
-                `gemini-2.0-flash:generateContent?key=${key}`, {
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -130,8 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function extractMemory(prompt, reply) {
         try {
             const res = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/` +
-                `gemini-2.0-flash:generateContent?key=${apiKey}`, {
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -162,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             chatApp.style.display = 'none';
             return;
         }
+
         loginBtn.style.display = 'none';
         logoutBtn.style.display = 'block';
         chatApp.style.display = 'none';
@@ -189,11 +189,32 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             apiKeyModal.classList.remove('hidden');
         }
+
+
+        clearChatBtn.onclick = async () => {
+            const confirmed = confirm("Are you sure you want to clear all chat history?");
+            if (!confirmed) return;
+
+            try {
+                await userDocRef.update({
+                    chatHistory: []
+                });
+                chatHistory = [];
+                chatContainer.innerHTML = '';
+                alert("Chat history & memory cleared.");
+                location.reload()
+            } catch (e) {
+                console.error("Failed to clear chat history:", e);
+                alert("Something went wrong while clearing chat.");
+            }
+        };
     });
 
+    // 9) Sign in/out
     loginBtn.onclick = () => auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     logoutBtn.onclick = () => auth.signOut();
 
+    // 10) Change API key flow
     changeKeyBtn.onclick = () => {
         apiKeyInput.value = '';
         apiKeyError.style.display = 'none';
@@ -240,7 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         let context = '';
-        if (memory.length) context += 'Memory:\n- ' + memory.join('\n- ') + '\n\n';
+        if (memory.length) {
+            context += 'Memory:\n- ' + memory.join('\n- ') + '\n\n';
+        }
         chatHistory.forEach(m => {
             context += (m.role === 'user' ? 'User: ' : 'Bot: ') + m.text + '\n';
         });
@@ -251,8 +274,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const last = [...chatHistory].reverse()
                 .find(m => m.role === 'bot' && /```[\w-]+\n[\s\S]*?```/.test(m.text));
             if (last) {
-                finalPrompt = 'Memory:\n- ' + memory.join('\n- ') + '\n\n' +
-                    'Modify this code per request: "' + prompt + '"\n\n' + last.text;
+                finalPrompt =
+                    'Memory:\n- ' + memory.join('\n- ') + '\n\n' +
+                    'Modify this code per request: "' + prompt + '"\n\n' +
+                    last.text;
             }
         }
 
@@ -260,8 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let reply = 'No response.';
         try {
             const res = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/` +
-                `gemini-2.0-flash:generateContent?key=${apiKey}`, {
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -284,7 +308,6 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleSpinner(false);
         }
 
-        // render & store bot reply
         render(reply, 'bot');
         chatHistory.push({
             role: 'bot',
@@ -294,7 +317,6 @@ document.addEventListener("DOMContentLoaded", () => {
             chatHistory
         });
 
-        // extract & store memory
         const facts = await extractMemory(finalPrompt, reply);
         const unique = facts.filter(f => !memory.includes(f));
         if (unique.length) {
