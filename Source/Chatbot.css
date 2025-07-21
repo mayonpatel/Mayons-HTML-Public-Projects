@@ -1,0 +1,277 @@
+        /* GLOBAL */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            overflow: auto;
+        }
+
+        /* HEADER */
+        h1 {
+            margin: 1rem 0;
+            color: #00fff7;
+            text-shadow: 0 0 12px rgba(0, 255, 247, 0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 8px rgba(0, 255, 247, 0.3);
+            }
+
+            to {
+                text-shadow: 0 0 16px rgba(0, 255, 247, 0.7);
+            }
+        }
+
+        /* CARDS */
+        .card {
+            backdrop-filter: blur(20px);
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(0, 255, 247, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 720px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.5s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* AUTH CARD */
+        #authContainer {
+            text-align: center;
+        }
+
+        /* API-KEY MODAL */
+        #apiKeyModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        #apiKeyModal.hidden {
+            display: none;
+        }
+
+        /* CHAT CARD */
+        #chatApp {
+            display: none;
+            position: relative;
+            height: calc(80vh);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CHAT CONTAINER */
+        #chatContainer {
+            flex: 1;
+            overflow-y: auto;
+            background: rgba(20, 20, 20, 0.4);
+            border: 1px solid rgba(0, 255, 247, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 255, 247, 0.4) transparent;
+        }
+
+        #chatContainer::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chatContainer::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #chatContainer::-webkit-scrollbar-thumb {
+            background: rgba(0, 255, 247, 0.4);
+            border-radius: 4px;
+        }
+
+        /* MESSAGES */
+        .message {
+            margin: 0.5rem 0;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+            opacity: 0;
+            animation: msgIn 0.4s ease forwards;
+        }
+
+        @keyframes msgIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .user {
+            background: rgba(0, 255, 247, 0.15);
+            align-self: flex-end;
+            color: #fff;
+            text-align: right;
+        }
+
+        .bot {
+            background: rgba(255, 255, 255, 0.1);
+            align-self: flex-start;
+            color: #e0e0e0;
+            text-align: left;
+        }
+
+        /* INPUT FOOTER */
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 12px;
+            border: none;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 255, 247, 0.5);
+        }
+
+        /* MAIN CHAT/AUTH BUTTONS */
+        button:not(.copy-btn) {
+            background: #00fff7;
+            color: #111;
+            border: none;
+            padding: 0.8rem 1.4rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.3s ease;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+
+        button:not(.copy-btn):hover {
+            background: #00d6c8;
+            transform: scale(1.05);
+        }
+
+        button:not(.copy-btn):active {
+            transform: scale(0.95);
+        }
+
+        /* SPINNER */
+        #spinner {
+            width: 36px;
+            height: 36px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #00fff7;
+            border-radius: 50%;
+            margin: 1rem auto;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* CODE BLOCK */
+        .code-block {
+            position: relative;
+            background: #121212;
+            border-radius: 8px;
+            margin: 0.8rem 0;
+            animation: fadeIn 0.4s ease both;
+        }
+
+        .code-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 255, 247, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 247, 0.2);
+        }
+
+        .code-block-lang {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #00fff7;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: 1px solid #00fff7;
+            color: #00fff7;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: background 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #00fff7;
+            color: #111;
+        }
+
+        .code-block pre {
+            margin: 0;
+            padding: 1rem;
+            color: #e0e0e0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            background: #121212;
+            overflow-x: auto;
+        }
+
+        /* FOOTER */
+        footer {
+            margin: 1rem 0;
+            font-size: 0.8rem;
+            color: #555;
+            animation: fadeIn 1s ease both;
+        }
