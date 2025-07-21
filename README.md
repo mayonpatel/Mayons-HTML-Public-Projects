@@ -2,7 +2,7 @@
 
 ## Please enjoy using my projects and consider leaving a star :D
 
-### IMPORTANT: To use mainpage.html, you must have every other file, or it won't work. Please have the exact file name and don't split it into different folders.
+### IMPORTANT: To use mainpage.html, you must have every other file you want to work with, or it won't work. Please have the exact file name and don't split it into different folders.
 
 Some items may be obfuscated for security reasons.
 
