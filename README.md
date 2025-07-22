@@ -12,4 +12,6 @@ Official Website: https://mayon.pages.dev
 
 Official Github: https://github.com/mayonpatel/Mayons-HTML-Public-Projects
 
+License: https://raw.githubusercontent.com/mayonpatel/Mayons-HTML-Public-Projects/refs/heads/main/LICENSE
+
 © 2025 Mayon Patel. All rights reserved.
